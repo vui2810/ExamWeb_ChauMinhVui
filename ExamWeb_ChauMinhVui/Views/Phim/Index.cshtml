@@ -1,0 +1,48 @@
+﻿@model List<Phim>
+
+<partial name="_ThongBao" />
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>LIST PHIM</h2>
+    </div>
+    <div class="col-md-6 text-right">
+        <a asp-action="Add" class="btn btn-primary">
+            Thêm mới phim
+        </a>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Tựa đề </th>
+            <th>thể loại</th>
+            <th>giá vé </th>
+            <th>thời lượng </th>
+            <th>Action </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+        <tr>
+            <td>@x.TuaDe</td>
+            <td>@(x.TrongNuoc ? "việt nam":"nước ngoài")</td>
+            <td>@x.GiaVe</td>
+            <td>@x.ThoiLuong</td>
+            <td>
+                <a asp-action="Update" asp-route-id="@x.Id" class="btn btn-success">
+                    Sửa
+                </a>
+                <a asp-action="Delete" asp-route-id="@x.Id" class="btn btn-danger">
+                    Xoá
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<div class="alert alert-info pt-2">
+    Có <b>@ViewBag.SUM </b> Phim trong thư viện _giá vé cao nhất
+</div>
